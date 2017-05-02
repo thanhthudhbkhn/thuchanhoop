@@ -35,8 +35,13 @@ public class Rule {
             "iai","iài","iái","iải","iãi","iại",
             "iây","iầy","iấy","iẫy",
             "iao","iào","iáo","iảo",
+            "iau","iàu","iáu","iảu","iạu",
+            "iay","iày","iáy","iảy","iãy","iạy",
+            "ie","iè","ié","iẻ","iẽ","iẹ",
             "io", "iò", "ió", "iỏ", "iõ", "iọ",
+            "ioi","iòi","iói","iỏi","iõi","iọi",
             "iô", "iồ", "iố", "iổ", "iỗ", "iộ","iơ", "iờ",
+            "iơi","iời","iới","iởi","iỡi","iợi",
             "iư", "iứ", "iừ", "iử", "iữ", "iự",
             //---------------------------------------
             "o", "ò", "ó", "ỏ", "õ", "ọ",
@@ -93,8 +98,13 @@ public class Rule {
     public final static String[] nguyenAmChiDiVoiG={"iai","iài","iái","iải","iãi","iại",
         "iây","iầy","iấy","iẫy",
         "iao","iào","iáo","iảo",
+        "iau","iàu","iáu","iảu","iạu",
+        "iay","iày","iáy","iảy","iãy","iạy",
+        "ie","iè","ié","iẻ","iẽ","iẹ",
         "io", "iò", "ió", "iỏ", "iõ", "iọ",
+        "ioi","iòi","iói","iỏi","iõi","iọi",
         "iô", "iồ", "iố", "iổ", "iỗ", "iộ","iơ", "iờ",
+        "iơi","iời","iới","iởi","iỡi","iợi",
         "iư", "iứ", "iừ", "iử", "iữ", "iự"};
 	
 	public static boolean checkValid(Xau x){
@@ -198,23 +208,23 @@ public class Rule {
 		Arrays.sort(Rule.notPhuAmCuoi);
 		Arrays.sort(Rule.nguyenAmDacBiet);
 		Arrays.sort(Rule.nguyenAmChiDiVoiG);
-				
-		Xau key = new Xau(""); //test 1 từ
+		/*		
+		Xau key = new Xau("thanh"); //test 1 từ
 		System.out.println(checkValid(key));
+		*/
 		
-		/*
-		String paragraph = ">"; //test 1 đoạn văn
+		String paragraph = "giai gai già trẻ bánh dày giày tây"; //test 1 đoạn văn
 		int i=0,j=0;
 		for (i=0;i<paragraph.length();i++){
 			if ((i!=0)&&(paragraph.charAt(i)==' ')){
 				//System.out.println(paragraph.substring(j, i));
 				Xau key = new Xau (paragraph.substring(j, i));
-				System.out.println(paragraph.substring(j, i)+checkValid(key));
+				System.out.println(checkValid(key));
 				j=i;
 			}
 		}
 		Xau key = new Xau (paragraph.substring(j, paragraph.length()));
-		System.out.println(paragraph.substring(j, paragraph.length())+checkValid(key));
-		*/
+		System.out.println(checkValid(key));
+		
 	}
 }

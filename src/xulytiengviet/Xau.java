@@ -12,7 +12,7 @@ public class Xau {
 		int i=0;
 		xau=xau.trim();
 		
-		//xử lý khi xâu đi liền với dấu
+		//xá»­ lÃ½ khi xÃ¢u Ä‘i liá»�n vá»›i dáº¥u
 		//loai bo cac ky tu dau xau la cac dau !"#$%&'()*+,-./:;<=>?@
 		while (( (47>=xau.charAt(i))&&(xau.charAt(i))>=33 )||( (64>=xau.charAt(i))&&(xau.charAt(i))>=58 )){
 			xau = xau.substring(0, i) + xau.substring(i + 1);
@@ -36,47 +36,33 @@ public class Xau {
 		so_nguyen_am=i1; so_phu_am=i2;
 	}	
 	
-	public boolean isNguyenAm(String x){
+	public boolean binSearch(String x, String[] array){
 		int first=0;
-		int last=Rule.nguyenAm.length;
+		int last=array.length;
 		while (first<last){
 			int mid=(first+last)/2;
-			if (x.compareTo(Rule.nguyenAm[mid])<0) last=mid;
+			if (x.compareTo(array[mid])<0) last=mid;
 			else {
-				if (x.compareTo(Rule.nguyenAm[mid])>0) first=mid+1;
+				if (x.compareTo(array[mid])>0) first=mid+1;
 				else {return true;}	
 			}
 		}
 		return false;
+
+	}
+	
+	public boolean isNguyenAm(String x){
+		return binSearch(x, Rule.nguyenAm);
 	}
 
 	public boolean isPhuAm(String x) {
-		int first=0;
-		int last=Rule.notPhuAmCuoi.length;
-		while (first<last){
-			int mid=(first+last)/2;
-			if (x.compareTo(Rule.notPhuAmCuoi[mid])<0) last=mid;
-			else {
-				if (x.compareTo(Rule.notPhuAmCuoi[mid])>0) first=mid+1;
-				else {return true;}	
-			}
-		}
-		isPhuAmCuoi(x);
-        return false;
+		if(binSearch(x,Rule.notPhuAmCuoi)!=true)
+        	return (binSearch(x,Rule.phuAmCuoi));
+        return true;
     }
 	
 	public boolean isPhuAmCuoi(String x){
-		int first=0;
-		int last=Rule.phuAmCuoi.length;
-		while (first<last){
-			int mid=(first+last)/2;
-			if (x.compareTo(Rule.phuAmCuoi[mid])<0) last=mid;
-			else {
-				if (x.compareTo(Rule.phuAmCuoi[mid])>0) first=mid+1;
-				else {return true;}	
-			}
-		}
-        return false;
+		return (binSearch(x,Rule.phuAmCuoi));
 	}
 	
 	public boolean isNguyenAmDacBiet(char x){
@@ -94,17 +80,7 @@ public class Xau {
 	}
 	
 	public boolean isNguyenAmChiDiVoiG(String x){
-		int first=0;
-		int last=Rule.nguyenAmChiDiVoiG.length;
-		while (first<last){
-			int mid=(first+last)/2;
-			if (x.compareTo(Rule.nguyenAmChiDiVoiG[mid])<0) last=mid;
-			else {
-				if (x.compareTo(Rule.nguyenAmChiDiVoiG[mid])>0) first=mid+1;
-				else {return true;}	
-			}
-		}
-		return false;
+		return (binSearch(x,Rule.nguyenAmChiDiVoiG));
 	}
 	
 	public boolean tachXau(){
@@ -126,7 +102,10 @@ public class Xau {
 			else break;
 		}
 		if(tmpPAD.compareTo("g")==0) { if (isNguyenAm(tmpNA)!=true) return false; }
-		else if (isNguyenAmChiDiVoiG(tmpNA)==true) return false;
+		else {
+			if (isNguyenAm(tmpNA)!=true) return false;
+			if (isNguyenAmChiDiVoiG(tmpNA)==true) return false;
+		}
 		//System.out.println("n.a.ok="+tmpNA+so_nguyen_am);
 		//------------------------------------------------------------------------------
 		//lay phu am cuoi
