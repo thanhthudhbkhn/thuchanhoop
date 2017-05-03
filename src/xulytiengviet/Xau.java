@@ -12,7 +12,7 @@ public class Xau {
 		int i=0;
 		xau=xau.trim();
 		
-		//xá»­ lÃ½ khi xÃ¢u Ä‘i liá»�n vá»›i dáº¥u
+		///xử lý khi xâu đi liền với dấu
 		//loai bo cac ky tu dau xau la cac dau !"#$%&'()*+,-./:;<=>?@
 		while (( (47>=xau.charAt(i))&&(xau.charAt(i))>=33 )||( (64>=xau.charAt(i))&&(xau.charAt(i))>=58 )){
 			xau = xau.substring(0, i) + xau.substring(i + 1);
@@ -78,22 +78,18 @@ public class Xau {
 		}
         return false;
 	}
-	
-	public boolean isNguyenAmChiDiVoiG(String x){
-		return (binSearch(x,Rule.nguyenAmChiDiVoiG));
-	}
-	
+		
 	public boolean tachXau(){
 		String tmpPAD ="",tmpNA="",tmpPAC="";
 		int i;
 		//lay phu am dau
 		for(i=0;i<xau.length();i++){
 			String tmp = String.valueOf(xau.charAt(i));
-			if (isPhuAm(tmp)==true) {tmpPAD=tmpPAD.concat(tmp); so_phu_am++; }
+			if ((xau.charAt(0)=='g')&&(tmp.compareTo("i")==0)) {tmpPAD=tmpPAD.concat(tmp); so_phu_am++; }
+			if (isPhuAm(tmp)==true) {tmpPAD=tmpPAD.concat(tmp); so_phu_am++; } 
 			else break;
 		}
 		if (isPhuAm(tmpPAD)!=true) return false;
-		//System.out.println("p.a.ok="+tmpPAD+so_phu_am);
 		//------------------------------------------------------------------------------
 		//lay nguyen am
 		for(i=so_phu_am;i<xau.length();i++){
@@ -101,12 +97,8 @@ public class Xau {
 			if (isNguyenAm(tmp)==true) {tmpNA=tmpNA.concat(tmp); so_nguyen_am++; }
 			else break;
 		}
-		if(tmpPAD.compareTo("g")==0) { if (isNguyenAm(tmpNA)!=true) return false; }
-		else {
-			if (isNguyenAm(tmpNA)!=true) return false;
-			if (isNguyenAmChiDiVoiG(tmpNA)==true) return false;
-		}
-		//System.out.println("n.a.ok="+tmpNA+so_nguyen_am);
+		if (isNguyenAm(tmpNA)!=true) return false;
+		
 		//------------------------------------------------------------------------------
 		//lay phu am cuoi
 		for(i=so_phu_am+so_nguyen_am;i<xau.length();i++){
@@ -115,7 +107,6 @@ public class Xau {
 			else break;
 		}
 		if (isPhuAmCuoi(tmpPAC)!=true) 	return false;
-		//System.out.println("p.a.ok="+tmpPAC+so_phu_am);
 		//------------------------------------------------------------------------------
 		if(so_phu_am+so_nguyen_am<xau.length()) return false;
 		setXau(tmpPAD,tmpNA,tmpPAC,so_nguyen_am,so_phu_am);

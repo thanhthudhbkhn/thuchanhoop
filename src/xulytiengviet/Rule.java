@@ -11,7 +11,7 @@ public class Rule {
     public final static String[] notPhuAmCuoi = { "b", "d", "đ","g","h", "k", "l", "q",
     												"r", "s","v", "x","gh","gi","kh","ph","q",
     												"th","tr","ngh","c", "ng", "nh", "ch", "m",
-    												"n", "p", "t",""};
+    												"n", "p", "t","gi",""};
     public final static String[] nguyenAm = {
             "a", "à", "á", "ả", "ã", "ạ",
             "ai","ài","ái","ải","ãi","ại",
@@ -31,19 +31,6 @@ public class Rule {
             "iê","iề","iế","iể","iễ","iệ",
             "iu","ìu","íu","ỉu","ĩu","ịu",
             "iêu", "iều", "iếu", "iểu", "iễu", "iệu",
-            //--------------------------------------
-            "iai","iài","iái","iải","iãi","iại",
-            "iây","iầy","iấy","iẫy",
-            "iao","iào","iáo","iảo",
-            "iau","iàu","iáu","iảu","iạu",
-            "iay","iày","iáy","iảy","iãy","iạy",
-            "ie","iè","ié","iẻ","iẽ","iẹ",
-            "io", "iò", "ió", "iỏ", "iõ", "iọ",
-            "ioi","iòi","iói","iỏi","iõi","iọi",
-            "iô", "iồ", "iố", "iổ", "iỗ", "iộ","iơ", "iờ",
-            "iơi","iời","iới","iởi","iỡi","iợi",
-            "iư", "iứ", "iừ", "iử", "iữ", "iự",
-            //---------------------------------------
             "o", "ò", "ó", "ỏ", "õ", "ọ",
             "oa","oà","oá","oả","oã","oạ","óa","òa","ỏa","õa","ọa",
             "oai", "oài", "oái", "oải", "oãi", "oại",
@@ -95,18 +82,7 @@ public class Rule {
         "ứ","ự","ướ","ượ",
         "yế","yệ"
     };
-    public final static String[] nguyenAmChiDiVoiG={"iai","iài","iái","iải","iãi","iại",
-        "iây","iầy","iấy","iẫy",
-        "iao","iào","iáo","iảo",
-        "iau","iàu","iáu","iảu","iạu",
-        "iay","iày","iáy","iảy","iãy","iạy",
-        "ie","iè","ié","iẻ","iẽ","iẹ",
-        "io", "iò", "ió", "iỏ", "iõ", "iọ",
-        "ioi","iòi","iói","iỏi","iõi","iọi",
-        "iô", "iồ", "iố", "iổ", "iỗ", "iộ","iơ", "iờ",
-        "iơi","iời","iới","iởi","iỡi","iợi",
-        "iư", "iứ", "iừ", "iử", "iữ", "iự"};
-	
+    
 	public static boolean checkValid(Xau x){
 		if (checkDoDai(x)==false) 		return false;	//kiem tra do dai phai <=7
 		if (checkCauTruc(x)==false) 	return false;	//kiem tra cau truc p-n-p hop ly khong
@@ -136,7 +112,7 @@ public class Rule {
 		if((x.phu_am_dau.compareTo("g")==0)||(x.phu_am_dau.compareTo("ng")==0)||(x.phu_am_dau.compareTo("c")==0)){
 			char tmp= x.xau.charAt(x.phu_am_dau.length());
 			if(x.phu_am_dau.compareTo("g")==0){ //rieng g co the dung truoc i
-				if((tmp=='i')||(tmp=='ì')) return true;
+				if((tmp=='i')||(tmp=='ì')||(tmp=='ỉ')) return true;
 			}
 			return (!x.isNguyenAmDacBiet(tmp));
 		}
@@ -207,17 +183,15 @@ public class Rule {
 		Arrays.sort(Rule.phuAmCuoi);
 		Arrays.sort(Rule.notPhuAmCuoi);
 		Arrays.sort(Rule.nguyenAmDacBiet);
-		Arrays.sort(Rule.nguyenAmChiDiVoiG);
 		/*		
 		Xau key = new Xau("thanh"); //test 1 từ
 		System.out.println(checkValid(key));
 		*/
 		
-		String paragraph = "giai gai già trẻ bánh dày giày tây"; //test 1 đoạn văn
+		String paragraph = "Cái đạo lý đó, người vốn dĩ tin tưởng hoàn toàn vào kinh điển, không dám thay đổi biến hóa như Giác Viễn không sao hiểu được. Có điều lý lẽ không có gì để chứng minh, Trương Quân Bảo lúc đó tuổi còn nhỏ, cũng không biết chắc là suy định của mình có đúng hay không."; //test 1 đoạn văn
 		int i=0,j=0;
 		for (i=0;i<paragraph.length();i++){
 			if ((i!=0)&&(paragraph.charAt(i)==' ')){
-				//System.out.println(paragraph.substring(j, i));
 				Xau key = new Xau (paragraph.substring(j, i));
 				System.out.println(checkValid(key));
 				j=i;
