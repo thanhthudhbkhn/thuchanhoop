@@ -18,10 +18,10 @@ public class Xau {
 			xau = xau.substring(0, i) + xau.substring(i + 1);
 			if(xau.length()==0) break;
 		}
-		//loai bo cac ky tu cuoi xau la cac dau !"#$%&'()*+,-./:;<=>?@
+		//loai bo cac ky tu cuoi xau la cac dau !"#$%&'()*+,-./0123456789:;<=>?@[\]^_`
 		i=xau.length()-1;
 		if(i>0){
-			while (( (47>=xau.charAt(i))&&(xau.charAt(i))>=33 )||( (64>=xau.charAt(i))&&(xau.charAt(i))>=58 )){
+			while (( (64>=xau.charAt(i))&&(xau.charAt(i))>=32 )||( (96>=xau.charAt(i))&&(xau.charAt(i))>=91 )){
 				xau = xau.substring(0, i);
 				i--;
 				if(i==-1) break;
@@ -85,30 +85,32 @@ public class Xau {
 		//lay phu am dau
 		for(i=0;i<xau.length();i++){
 			String tmp = String.valueOf(xau.charAt(i));
-			if ((xau.charAt(0)=='g')&&(tmp.compareTo("i")==0)) {tmpPAD=tmpPAD.concat(tmp); so_phu_am++; }
-			if (isPhuAm(tmp)==true) {tmpPAD=tmpPAD.concat(tmp); so_phu_am++; } 
+			if(i==1) if ((xau.charAt(0)=='g')&&(xau.charAt(i)=='i')) {tmpPAD=tmpPAD.concat(tmp); }
+			if(i==1) if ((xau.charAt(0)=='q')&&(xau.charAt(i)=='u')) {tmpPAD=tmpPAD.concat(tmp); }
+			if (isPhuAm(tmp)==true) {tmpPAD=tmpPAD.concat(tmp); so_phu_am++;} 
 			else break;
 		}
 		if (isPhuAm(tmpPAD)!=true) return false;
+		//System.out.println("p.a.ok="+tmpPAD+tmpPAD.length());
 		//------------------------------------------------------------------------------
 		//lay nguyen am
-		for(i=so_phu_am;i<xau.length();i++){
+		for(i=tmpPAD.length();i<xau.length();i++){
 			String tmp = String.valueOf(xau.charAt(i));
 			if (isNguyenAm(tmp)==true) {tmpNA=tmpNA.concat(tmp); so_nguyen_am++; }
 			else break;
 		}
 		if (isNguyenAm(tmpNA)!=true) return false;
-		
+		//System.out.println("n.a.ok="+tmpNA+so_nguyen_am);
 		//------------------------------------------------------------------------------
 		//lay phu am cuoi
-		for(i=so_phu_am+so_nguyen_am;i<xau.length();i++){
+		for(i=tmpPAD.length()+tmpNA.length();i<xau.length();i++){
 			String tmp = String.valueOf(xau.charAt(i));
 			if (isPhuAm(tmp)==true) {tmpPAC=tmpPAC.concat(tmp); so_phu_am++; }
 			else break;
 		}
 		if (isPhuAmCuoi(tmpPAC)!=true) 	return false;
+		//System.out.println("p.a.ok="+tmpPAC+so_phu_am);
 		//------------------------------------------------------------------------------
-		if(so_phu_am+so_nguyen_am<xau.length()) return false;
 		setXau(tmpPAD,tmpNA,tmpPAC,so_nguyen_am,so_phu_am);
 		return true;
 	}

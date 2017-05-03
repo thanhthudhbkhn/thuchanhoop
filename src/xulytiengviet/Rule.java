@@ -8,10 +8,10 @@ public class Rule {
 	public final int SL_PHU_AM_MAX = 5;
 	public final int SL_PHU_AM_MIN = 0;
 	public final static String[] phuAmCuoi={"c", "ng", "nh", "ch", "m", "n", "p", "t",""};
-    public final static String[] notPhuAmCuoi = { "b", "d", "đ","g","h", "k", "l", "q",
-    												"r", "s","v", "x","gh","gi","kh","ph","q",
+    public final static String[] notPhuAmCuoi = { "b", "d", "đ","g","h", "k", "l", "qu",
+    												"r", "s","v", "x", "gh","gi","kh","ph","q",
     												"th","tr","ngh","c", "ng", "nh", "ch", "m",
-    												"n", "p", "t","gi",""};
+    												"n", "p", "t",""};
     public final static String[] nguyenAm = {
             "a", "à", "á", "ả", "ã", "ạ",
             "ai","ài","ái","ải","ãi","ại",
@@ -31,29 +31,6 @@ public class Rule {
             "iê","iề","iế","iể","iễ","iệ",
             "iu","ìu","íu","ỉu","ĩu","ịu",
             "iêu", "iều", "iếu", "iểu", "iễu", "iệu",
-            //--------------------------------------
-            /*
-            "iai","iài","iái","iải","iãi","iại",
-            "iao","iào","iáo","iảo",
-            "iau","iàu","iáu","iảu","iạu",
-            "iay","iày","iáy","iảy","iãy","iạy",
-            "iă", "iằ", "iắ", "iẳ", "iẵ", "iặ",
-            "iâ", "iầ", "iấ", "iẩ", "iẫ", "iậ",
-            "iâu","iầu","iấu","iẩu","iẫu","iậu",
-            "iây","iầy","iấy","iẫy",
-            "ie","iè","ié","iẻ","iẽ","iẹ",
-            "ieo","ièo","iéo","iẻo","iẽo","iẹo",
-            "iê", "iề", "iế", "iể", "iễ", "iệ",
-            "io", "iò", "ió", "iỏ", "iõ", "iọ",
-            "ioi","iòi","iói","iỏi","iõi","iọi",
-            "iô", "iồ", "iố", "iổ", "iỗ", "iộ",
-            "iơ", "iờ", "iớ", "iở", "iỡ", "iợ",
-            "iơi","iời","iới","iởi","iỡi","iợi",
-            "iu", "iù", "iú", "iủ", "iũ", "iụ","iuộ",
-            "iư", "iứ", "iừ", "iử", "iữ", "iự",
-            "iưa", "iứa", "iừa", "iửa", "iữa", "iựa",
-            "iươ", "iườ", "iướ", "iưở", "iưỡ", "iượ",*/
-            //---------------------------------------
             "o", "ò", "ó", "ỏ", "õ", "ọ",
             "oa","oà","oá","oả","oã","oạ","óa","òa","ỏa","õa","ọa",
             "oai", "oài", "oái", "oải", "oãi", "oại",
@@ -77,20 +54,20 @@ public class Rule {
             "uô", "uồ", "uố", "uổ", "uỗ", "uộ",
             "uôi", "uồi", "uối", "uổi", "uỗi", "uội",
             "uơ", "uớ", "uở",
-            "uy", "ùy", "úy", "ủy", "ũy", "ụy",
+            "uy", "ùy", "úy", "ủy", "ũy", "ụy","uý","uỵ",
             "uya",
             "uyê", "uyề", "uyế", "uyể", "uyễ", "uyệ",
-            "uỷu",
+            "uỷu","uỵu",
             "ư", "ứ", "ừ", "ử", "ữ", "ự",
             "ưa", "ừa", "ứa", "ửa", "ữa", "ựa",
-            "ưi", "ừi", "ứi",
+            "ưi", "ừi", "ứi","ửi","ữi","ựi",
             "ươ", "ườ", "ướ", "ưở", "ưỡ", "ượ",
             "ươi", "ười", "ưới", "ưởi", "ưỡi", "ượi",
             "ươu", "ườu", "ượu",
             "ưu", "ừu", "ứu", "ửu", "ữu", "ựu",
             "y", "ỳ", "ý", "ỷ", "ỹ", "ỵ",
             "yê", "yề", "yế", "yể", "yễ", "yệ",
-            "yêu", "yều", "yểu"
+            "yêu", "yều","yếu","yểu"
         };
     public final static char[] nguyenAmDacBiet={'e', 'è', 'é', 'ẻ', 'ẽ', 'ẹ','ê', 'ề', 'ế', 'ể', 'ễ', 'ệ','i', 'ì', 'í', 'ỉ', 'ĩ', 'ị'};
     public final static String[] nguyenAmDauSacvaNang={
@@ -101,14 +78,14 @@ public class Rule {
         "óe","ọe","oó","ố","ộ",
         "ớ","ợ",
         "ú","ụ","uấ","uậ","uế","uệ","uố","uộ","uớ",
-        "uyế", "uyể", "uyễ", "uyệ",
+        "uyế", "uyể", "uyễ", "uyệ","uý","uỵ",
         "ứ","ự","ướ","ượ",
         "yế","yệ"
     };
     
 	public static boolean checkValid(Xau x){
 		if (checkDoDai(x)==false) 		return false;	//kiem tra do dai phai <=7
-		if (checkCauTruc(x)==false) 	{System.out.println("loi 2");return false;}	//kiem tra cau truc p-n-p hop ly khong
+		if (checkCauTruc(x)==false) 	return false;	//kiem tra cau truc p-n-p hop ly khong
 		if (checkPhuAmDacBiet(x)==false)return false;	//kiem tra nguyen am di kem voi gh,ngh va g,ng,c
 		if (checkPhuAmQ(x)==false) 		return false;	//kiem tra sau q phai la u
 		if (checkPhuAmK(x)==false) 		return false;	//kiem tra sau k phai la nguyen am dac biet hoac y
@@ -211,21 +188,23 @@ public class Rule {
 		System.out.println(checkValid(key));
 		*/
 		
-		String paragraph = ""; //test 1 đoạn văn
+		String paragraph = "tuyệt[12]"; //test 1 đoạn văn
 		int i=0,j=0;
-		String stringKey = paragraph.substring(j, i);
-        if (!stringKey.trim().equals("")) {
-        	
-			for (i=0;i<paragraph.length();i++){
+		
+    	if (paragraph.compareTo("")!=0){
+    		for (i=1;i<paragraph.length();i++){
 				if ((i!=0)&&(paragraph.charAt(i)==' ')){
 					Xau key = new Xau (paragraph.substring(j, i));
 					System.out.println(checkValid(key));
 					j=i;
+					
 				}
 			}
 			Xau key = new Xau (paragraph.substring(j, paragraph.length()));
 			System.out.println(checkValid(key));
-        }
+    		
+		}
+        
 		
 	}
 }
