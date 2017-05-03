@@ -31,6 +31,29 @@ public class Rule {
             "iê","iề","iế","iể","iễ","iệ",
             "iu","ìu","íu","ỉu","ĩu","ịu",
             "iêu", "iều", "iếu", "iểu", "iễu", "iệu",
+            //--------------------------------------
+            /*
+            "iai","iài","iái","iải","iãi","iại",
+            "iao","iào","iáo","iảo",
+            "iau","iàu","iáu","iảu","iạu",
+            "iay","iày","iáy","iảy","iãy","iạy",
+            "iă", "iằ", "iắ", "iẳ", "iẵ", "iặ",
+            "iâ", "iầ", "iấ", "iẩ", "iẫ", "iậ",
+            "iâu","iầu","iấu","iẩu","iẫu","iậu",
+            "iây","iầy","iấy","iẫy",
+            "ie","iè","ié","iẻ","iẽ","iẹ",
+            "ieo","ièo","iéo","iẻo","iẽo","iẹo",
+            "iê", "iề", "iế", "iể", "iễ", "iệ",
+            "io", "iò", "ió", "iỏ", "iõ", "iọ",
+            "ioi","iòi","iói","iỏi","iõi","iọi",
+            "iô", "iồ", "iố", "iổ", "iỗ", "iộ",
+            "iơ", "iờ", "iớ", "iở", "iỡ", "iợ",
+            "iơi","iời","iới","iởi","iỡi","iợi",
+            "iu", "iù", "iú", "iủ", "iũ", "iụ","iuộ",
+            "iư", "iứ", "iừ", "iử", "iữ", "iự",
+            "iưa", "iứa", "iừa", "iửa", "iữa", "iựa",
+            "iươ", "iườ", "iướ", "iưở", "iưỡ", "iượ",*/
+            //---------------------------------------
             "o", "ò", "ó", "ỏ", "õ", "ọ",
             "oa","oà","oá","oả","oã","oạ","óa","òa","ỏa","õa","ọa",
             "oai", "oài", "oái", "oải", "oãi", "oại",
@@ -85,12 +108,12 @@ public class Rule {
     
 	public static boolean checkValid(Xau x){
 		if (checkDoDai(x)==false) 		return false;	//kiem tra do dai phai <=7
-		if (checkCauTruc(x)==false) 	return false;	//kiem tra cau truc p-n-p hop ly khong
+		if (checkCauTruc(x)==false) 	{System.out.println("loi 2");return false;}	//kiem tra cau truc p-n-p hop ly khong
 		if (checkPhuAmDacBiet(x)==false)return false;	//kiem tra nguyen am di kem voi gh,ngh va g,ng,c
 		if (checkPhuAmQ(x)==false) 		return false;	//kiem tra sau q phai la u
 		if (checkPhuAmK(x)==false) 		return false;	//kiem tra sau k phai la nguyen am dac biet hoac y
 		if (checkNguyenAmDai(x)==false) return false;	//nguyen am dai 3 (trừ "uyê") hoac nguyen am dai 2 duoi i,o,u,y (trừ uy,oo) khong duoc co phu am cuoi
-		if (checkNguyenAmNgan(x)==false)return false;	// nguyen am ă va â phai co phu am cuoi
+		if (checkNguyenAmNgan(x)==false)return false;	//nguyen am ă va â phai co phu am cuoi
 		if (checkPhuAmNgat(x)==false) 	return false;	//kiem tra nguyen am khi phu am la c, ch, p, t
 		return true;
 	}
@@ -188,17 +211,21 @@ public class Rule {
 		System.out.println(checkValid(key));
 		*/
 		
-		String paragraph = "Cái đạo lý đó, người vốn dĩ tin tưởng hoàn toàn vào kinh điển, không dám thay đổi biến hóa như Giác Viễn không sao hiểu được. Có điều lý lẽ không có gì để chứng minh, Trương Quân Bảo lúc đó tuổi còn nhỏ, cũng không biết chắc là suy định của mình có đúng hay không."; //test 1 đoạn văn
+		String paragraph = ""; //test 1 đoạn văn
 		int i=0,j=0;
-		for (i=0;i<paragraph.length();i++){
-			if ((i!=0)&&(paragraph.charAt(i)==' ')){
-				Xau key = new Xau (paragraph.substring(j, i));
-				System.out.println(checkValid(key));
-				j=i;
+		String stringKey = paragraph.substring(j, i);
+        if (!stringKey.trim().equals("")) {
+        	
+			for (i=0;i<paragraph.length();i++){
+				if ((i!=0)&&(paragraph.charAt(i)==' ')){
+					Xau key = new Xau (paragraph.substring(j, i));
+					System.out.println(checkValid(key));
+					j=i;
+				}
 			}
-		}
-		Xau key = new Xau (paragraph.substring(j, paragraph.length()));
-		System.out.println(checkValid(key));
+			Xau key = new Xau (paragraph.substring(j, paragraph.length()));
+			System.out.println(checkValid(key));
+        }
 		
 	}
 }
