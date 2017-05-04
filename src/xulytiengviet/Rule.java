@@ -3,10 +3,6 @@ package xulytiengviet;
 import java.util.Arrays;
 
 public class Rule {
-	public final int SL_NGUYEN_AM_MAX = 3;
-	public final int SL_NGUYEN_AM_MIN = 1;
-	public final int SL_PHU_AM_MAX = 5;
-	public final int SL_PHU_AM_MIN = 0;
 	public final static String[] phuAmCuoi={"c", "ng", "nh", "ch", "m", "n", "p", "t",""};
     public final static String[] notPhuAmCuoi = { "b", "d", "đ","g","h", "k", "l", "qu",
     												"r", "s","v", "x", "gh","gi","kh","ph","q",
@@ -36,7 +32,8 @@ public class Rule {
             "oai", "oài", "oái", "oải", "oãi", "oại",
             "oay", "oày", "oáy", "oảy", "oãy", "oạy",
             "oă","oằ","oắ","oẳ","oẵ","oặ",
-            "oe","òe","óe","ỏe","õe","ọe",
+            "oe","òe","óe","ỏe","õe","ọe", "oè","oé","oẻ","oẽ","oẹ",
+            "oeo","oéo","oèo","oẻo","oẽo","oẹo",
             "oi","òi","ói","ỏi","õi","ọi",
             "oo","oò","oó",
             "ô", "ồ", "ố", "ổ", "ỗ", "ộ",
@@ -67,15 +64,15 @@ public class Rule {
             "ưu", "ừu", "ứu", "ửu", "ữu", "ựu",
             "y", "ỳ", "ý", "ỷ", "ỹ", "ỵ",
             "yê", "yề", "yế", "yể", "yễ", "yệ",
-            "yêu", "yều","yếu","yểu"
+            "yêu", "yều","yếu","yểu",""
         };
     public final static char[] nguyenAmDacBiet={'e', 'è', 'é', 'ẻ', 'ẽ', 'ẹ','ê', 'ề', 'ế', 'ể', 'ễ', 'ệ','i', 'ì', 'í', 'ỉ', 'ĩ', 'ị'};
     public final static String[] nguyenAmDauSacvaNang={
         "á","ạ","ắ","ặ","ấ","ậ",
         "é","ẹ","ế","ệ",
         "í","ị","iế","iệ",
-        "ó","ọ","oá","oạ","oắ","oặ",
-        "óe","ọe","oó","ố","ộ",
+        "ó","ọ","oá","oạ","óa","ọa","oắ","oặ",
+        "óe","ọe","oé","oẹ","oó","ố","ộ",
         "ớ","ợ",
         "ú","ụ","uấ","uậ","uế","uệ","uố","uộ","uớ",
         "uyế", "uyể", "uyễ", "uyệ","uý","uỵ",
@@ -183,28 +180,17 @@ public class Rule {
 		Arrays.sort(Rule.phuAmCuoi);
 		Arrays.sort(Rule.notPhuAmCuoi);
 		Arrays.sort(Rule.nguyenAmDacBiet);
-		/*		
-		Xau key = new Xau("thanh"); //test 1 từ
-		System.out.println(checkValid(key));
-		*/
 		
-		String paragraph = "tuyệt[12]"; //test 1 đoạn văn
-		int i=0,j=0;
-		
-    	if (paragraph.compareTo("")!=0){
-    		for (i=1;i<paragraph.length();i++){
-				if ((i!=0)&&(paragraph.charAt(i)==' ')){
-					Xau key = new Xau (paragraph.substring(j, i));
-					System.out.println(checkValid(key));
-					j=i;
-					
+		String paragraph = ""; //test 1 doan van
+		String [] mang;
+		mang = paragraph.split(" ");
+		for(int i=0;i<mang.length;i++)
+			if(mang[i].compareTo("")!=0){
+				String tmp=mang[i].trim();
+				if(tmp.length()!=0){
+					Xau key = new Xau (tmp);
+					if(checkValid(key)==false)	System.out.println(mang[i]);
 				}
 			}
-			Xau key = new Xau (paragraph.substring(j, paragraph.length()));
-			System.out.println(checkValid(key));
-    		
-		}
-        
-		
 	}
 }

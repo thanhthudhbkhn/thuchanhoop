@@ -10,18 +10,16 @@ public class Xau {
 	
 	public Xau (String xau){
 		int i=0;
-		xau=xau.trim();
-		
 		///xử lý khi xâu đi liền với dấu
-		//loai bo cac ky tu dau xau la cac dau !"#$%&'()*+,-./:;<=>?@
-		while (( (47>=xau.charAt(i))&&(xau.charAt(i))>=33 )||( (64>=xau.charAt(i))&&(xau.charAt(i))>=58 )){
+		//loai bo cac ky tu dau xau la cac dau " (
+		while ((xau.charAt(i)=='"')||(xau.charAt(i)=='(')||(xau.charAt(i)=='\t')){
 			xau = xau.substring(0, i) + xau.substring(i + 1);
 			if(xau.length()==0) break;
 		}
 		//loai bo cac ky tu cuoi xau la cac dau !"#$%&'()*+,-./0123456789:;<=>?@[\]^_`
 		i=xau.length()-1;
-		if(i>0){
-			while (( (64>=xau.charAt(i))&&(xau.charAt(i))>=32 )||( (96>=xau.charAt(i))&&(xau.charAt(i))>=91 )){
+		if(i>=0){
+			while (( (64>=xau.charAt(i))&&(xau.charAt(i))>=32 )||( (96>=xau.charAt(i))&&(xau.charAt(i))>=91 ) ){
 				xau = xau.substring(0, i);
 				i--;
 				if(i==-1) break;
@@ -34,7 +32,7 @@ public class Xau {
 	public void setXau(String s1, String s2, String s3, int i1, int i2){
 		phu_am_dau=s1; nguyen_am=s2; phu_am_cuoi=s3;
 		so_nguyen_am=i1; so_phu_am=i2;
-	}	
+	}
 	
 	public boolean binSearch(String x, String[] array){
 		int first=0;
@@ -111,6 +109,8 @@ public class Xau {
 		if (isPhuAmCuoi(tmpPAC)!=true) 	return false;
 		//System.out.println("p.a.ok="+tmpPAC+so_phu_am);
 		//------------------------------------------------------------------------------
+		if(i<xau.length()) return false;
+		if((tmpPAD.compareTo("")!=0)&&(tmpNA.compareTo("")==0)) return false; //neu co phu am ma khong co nguyen am thi sai
 		setXau(tmpPAD,tmpNA,tmpPAC,so_nguyen_am,so_phu_am);
 		return true;
 	}

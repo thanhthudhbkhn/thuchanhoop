@@ -5,10 +5,10 @@ import java.util.ArrayList;
 public class Search {
 
     public static void main(String[] args) {
-        String content = "con mèo hôm 432q  nay đi dạo. Lọ đường . Rồi đi chơi. Bác đang dạy các con học bài";
-        String keywords = "con đường đi học";
+        String content = "con mèo hôm nay đi dạo. Lọ đường . Rồi đi chơi. Bác đang dạy các con học bài"; //
+        String keywords = "con đi học đường nam";//
+        //result
         search(content, keywords);
-
     }
 
     private static void search(String content, String keywords) {
