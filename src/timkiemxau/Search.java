@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Search {
 
     public static void main(String[] args) {
-        String content = "con mèo hôm nay đi dạo. Lọ đường. Rồi đi chơi. Bác đang dạy các con học bài";
+        String content = "con    mèo hôm nay đi dạo. Lọ đường. Rồi đi chơi. Bác đang dạy các con học bài";
         String keywords = "mèo đang học";
         System.out.println( search(content,keywords) );
     }
